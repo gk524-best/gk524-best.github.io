@@ -1,17 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://gk524-best.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gk524-best.github.io/" rel="alternate" type="text/html" /><updated>2021-02-24T00:34:24+08:00</updated><id>https://gk524-best.github.io/feed.xml</id><title type="html">GK Blog</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Welcome to Jekyll!</title><link href="https://gk524-best.github.io/jekyll/2021/01/16/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2021-01-16T00:14:22+08:00</published><updated>2021-01-16T00:14:22+08:00</updated><id>https://gk524-best.github.io/jekyll/2021/01/16/welcome-to-jekyll</id><content type="html" xml:base="https://gk524-best.github.io/jekyll/2021/01/16/welcome-to-jekyll.html">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://gk524-best.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gk524-best.github.io/" rel="alternate" type="text/html" /><updated>2021-03-03T23:00:04+08:00</updated><id>https://gk524-best.github.io/feed.xml</id><title type="html">GK Blog</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">记一道java面试题</title><link href="https://gk524-best.github.io/java/2021/03/03/java01.html" rel="alternate" type="text/html" title="记一道java面试题" /><published>2021-03-03T21:44:22+08:00</published><updated>2021-03-03T21:44:22+08:00</updated><id>https://gk524-best.github.io/java/2021/03/03/java01</id><content type="html" xml:base="https://gk524-best.github.io/java/2021/03/03/java01.html">&lt;p&gt;  正题开始之前，先瞎扯一点，这个博客网站采用Jekyll静态网站生成器搭建的，主题参考一位国外大牛的，就是很简洁，
+目前功能呢不全，后期抽空会完善一下功能，写博客主要就是为了记录自己在学习工作中遇到的坑。&lt;br /&gt;
+  最近除了上班时间，一直帮朋友搞一个简单的生鲜行业的小程序，前后端都是我。前端中台采用React, 环境都是自己搭&lt;/p&gt;
 
-&lt;p&gt;Jekyll requires blog post files to be named according to the following format:&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YEAR-MONTH-DAY-title.MARKUP&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YEAR&lt;/code&gt; is a four-digit number, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MONTH&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DAY&lt;/code&gt; are both two-digit numbers, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MARKUP&lt;/code&gt; is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
-
-&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><category term="jekyll" /><summary type="html">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary></entry></feed>
+&lt;p&gt;建的没有用Umi那一套，使用了React、MaterialUi、RxJs、React-Router以及Redux等技术。后端采用Java, 顺便说一下之前自己
+有相关后端的开发经验，后来出来找全栈工作发现基本没人用PHP，虽然PHP是世界最好的语言(狗头)，但是这段经验使我成长很多，而且
+PHP的 &lt;a href=&quot;https://learnku.com/docs/laravel/8.5&quot;&gt;Laravel&lt;/a&gt; 框架真的很优秀，有兴趣的朋友可以去看看。所以在不想抛弃后端
+的情况下，就选了Java入坑了。学习没多久所以比较菜，什么原理呢之后再去学吧。后面小程序完成之后我会把代码开源出来&lt;br /&gt;
+  好了进入正题，今天刷到面试题，一道比较简单的题目，判断一个整数是否是奇数：&lt;br /&gt;&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public boolean isOdd(int i) {}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;  真的很简单，很快我想到答案这样解决：&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public boolean isOdd(int i) {
+    return i % 2 == 1;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;  那么传入-1呢，可能优化为：&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public boolean isOdd(int i) {
+    return i % 2 != 0;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;  但是这并不是别人想要的结果，最后去看了一下答案：&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public boolean isOdd(int i) {
+   return (i &amp;amp; 1) == 1;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;  这个答案确实没有想到，利用位运算，之前没有怎么接触过位运算。在这里记录一下。&lt;/p&gt;</content><author><name></name></author><category term="java" /><summary type="html">  正题开始之前，先瞎扯一点，这个博客网站采用Jekyll静态网站生成器搭建的，主题参考一位国外大牛的，就是很简洁， 目前功能呢不全，后期抽空会完善一下功能，写博客主要就是为了记录自己在学习工作中遇到的坑。   最近除了上班时间，一直帮朋友搞一个简单的生鲜行业的小程序，前后端都是我。前端中台采用React, 环境都是自己搭</summary></entry></feed>
