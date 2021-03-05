@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />            
+
+    <!-- Primary Meta Tags -->
+    <title>GK Blog | Java包冲突时候解决思路</title>
+    <meta name="title" content="GK Blog | Java包冲突时候解决思路" />
+    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+
+    <link rel="stylesheet" href="https://gk524-best.github.io/assets/css/main.css" />
+    <link rel="canonical" href="https://gk524-best.github.io/java/2021/03/05/java02" />
+    <link rel="shortcut icon" href="https://gk524-best.github.io/favicon.ico" type="image/x-icon" />
+</head>
+
+<body>
+<div class="site">
+    <header class="layout-header">
+    <div class="container">
+        <div class="row">
+            <div class="header-column left">
+                <a href="/"><h1 class="logo">BLOG</h1></a>
+            </div>
+            <div class="header-column right">
+                <a href="#" class="theme-mode-toggle">
+                    <svg class="svg-darkmode svg-icon svg-icon-fill" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M435.5,74.7A255.1,255.1,0,0,0,0,255.1,255,255,0,0,0,255.1,510.2,255.1,255.1,0,0,0,435.5,74.7ZM255.1,473.8V36.4c120.6,0,218.7,98.1,218.7,218.7S375.7,473.8,255.1,473.8Z"></path></svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+    <div class="site-content">
+        <div class="container">
+            <div class="row">
+                <main role="main" class="site-main">
+                    <article class="post-section">
+                        <div class="section-wrapper">
+                            <h2 class="h2">Java包冲突时候解决思路</h2>
+                            <div class="post-info">
+                                <time>2021-03-05</time>
+                            </div>
+                            <div class="post-detail">
+                                <p>  今天使用mybatis-plus进行关联表查询，因为不是特别复杂的请求我把Mysql就写在对应的mapper文件中了，使用了@Select注解。
+然而意外的报错了，报错信息如下：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>An attempt was made to call a method that does not exist. The attempt was made from the following location:
+
+    com.baomidou.mybatisplus.core.MybatisMapperAnnotationBuilder$AnnotationWrapper.&lt;init&gt;(MybatisMapperAnnotationBuilder.java:686)
+
+The following method did not exist:
+
+    org.apache.ibatis.annotations.Select.databaseId()Ljava/lang/String;
+
+The method's class, org.apache.ibatis.annotations.Select, is available from the following locations:
+
+    jar:file:/Applications/IntelliJ%20IDEA.app/Contents/plugins/maven/lib/maven3/repository/org/mybatis/mybatis/3.5.3/mybatis-3.5.3.jar!/org/apache/ibatis/annotations/Select.class
+
+The class hierarchy was loaded from the following locations:
+
+    org.apache.ibatis.annotations.Select: file:/Applications/IntelliJ%20IDEA.app/Contents/plugins/maven/lib/maven3/repository/org/mybatis/mybatis/3.5.3/mybatis-3.5.3.jar
+
+
+Action:
+
+Correct the classpath of your application so that it contains a single, compatible version of org.apache.ibatis.annotations.Select
+</code></pre></div></div>
+<p>  这是包版本不对应造成的，对于一个新手来说无所适从呀。请教过同事之后，指定是引用的版本冲突了，本地多了mybatis的版本，不是mybatis-plus依赖的版本。
+他网上找的答案是把mybatis-plus-boot-starter替换成mybatis-plus这样一试果真是可以运行了，我在兴喜之际，然后再进行别的添加、删除接口开发的时候，也意外的报错
+了：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Whitelabel Error Page
+This application has no explicit mapping for /error, so you are seeing this as a fallback.
+ 
+Thu May 23 14:54:08 CST 2019
+There was an unexpected error (type=Internal Server Error, status=500).
+Invalid bound statement (not found): com.mrk.dx.system.dao.SkyUserDao.selectList
+org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.mrk.dx.system.dao.SkyUserDao.selectList
+	at org.apache.ibatis.binding.MapperMethod$SqlCommand.&lt;init&gt;(MapperMethod.java:232)
+	at org.apache.ibatis.binding.MapperMethod.&lt;init&gt;(MapperMethod.java:50)
+	at org.apache.ibatis.binding.MapperProxy.lambda$cachedMapperMethod$0(MapperProxy.java:62)
+	at java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1660)
+	at org.apache.ibatis.binding.MapperProxy.cachedMapperMethod(MapperProxy.java:62)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:57)
+	at com.sun.proxy.$Proxy101.selectList(Unknown Source)
+	at com.baomidou.mybatisplus.service.impl.ServiceImpl.selectList(ServiceImpl.java:292)
+	at com.baomidou.mybatisplus.service.impl.ServiceImpl$$FastClassBySpringCGLIB$$3e2398a4.invoke(&lt;generated&gt;)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:684)
+</code></pre></div></div>
+<p>然后查了mybatis-plus与mybatis-plus-boot-starter区别，mybatis-plus-boot-starter将xml中BaseMapper中定义的id全部已经实现了,而mybatis-plus这个包
+还需要自己实现BaseMapper中的定义。这样不是又要回到写xml的时代了吗，强迫症的我无法忍受。最后花了好大的功夫找到pagehelper包所依赖的mybatis版本造成的。</p>
+
+<p>虽然花费了好长时间解决了这个问题，但是学会了好多东西，总结一下遇到包冲突解决思路：</p>
+<ol>
+  <li>先明确起冲突的是哪个包</li>
+  <li>查找主要包所依赖对应包的版本号, (ctrl + 鼠标左键)进到源码中查找所依赖对应包的版本</li>
+  <li>在启动的项目中排查可能依赖对应包的包，然后进行查找，查找方法如上所示</li>
+  <li>然后找到对应包冲突然后进行升级</li>
+</ol>
+
+<p>以上就是包冲突发生后，如何去解决包冲突的思路总结。以后应该得心应手了！</p>
+
+                            </div>
+                        </div>
+                    </article>
+                </main>
+                <aside class="right-sidebar">
+    <div class="widget search">
+        <h5>搜索</h5>
+        <div id="search-demo-container">
+            <div class="search-wrapper">
+                <input type="search" id="search-input" placeholder="search..." />
+                <div class="search-results">
+                    <ul id="results-container">
+                        <div class="line"></div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="widget side-labels">
+        <h5>分类</h5>
+        <div class="lables">
+            
+            <ul>
+                <li><a href="javascript:void(0)">java（2）</a></li>
+            </ul>
+            
+        </div>
+    </div>
+    <div class="widget latest-blog">
+        <h5>最近的帖子</h5>
+        <ul class="search-result-show">
+            
+                <li>
+                    <a class="post-item" href="/java/2021/03/05/java02.html">Java包冲突时候解决思路</a>
+                </li>
+            
+                <li>
+                    <a class="post-item" href="/java/2021/03/03/java01.html">记一道java面试题</a>
+                </li>
+            
+        </ul>
+    </div>
+</aside>
+<script src="https://gk524-best.github.io/assets/js/simple-jekyll-search.min.js"></script>
+<script type="text/javascript">
+    window.onload = function() {
+        window.simpleJekyllSearch = new SimpleJekyllSearch({
+            searchInput: document.getElementById('search-input'),
+            resultsContainer: document.getElementById('results-container'),
+            json: 'https://gk524-best.github.io/assets/js/search.json',
+            searchResultTemplate: '<li><a class="search-link" href="{url}?query={query}" title="{desc}">{title}</a></li>',
+            noResultsText: 'No results found',
+            limit: 10,
+            fuzzy: false,
+            exclude: ['Welcome']
+        })
+
+        window.simpleJekyllSearch.search("jekyll")
+    }
+</script>
+
+            </div>
+        </div>
+    </div>
+    <footer class="site-footer">
+    <div class="container">
+        <div class="footer-flex">
+            <div class="footer-column center">
+                <div class="copyright">
+                    <a href="/">gk524-best</a>
+                    © <span id="copyright-year"></span>- All rights reserved.
+                </div>
+            </div>
+        </div>
+    </div>
+</footer> <script type="text/javascript" src="https://gk524-best.github.io/assets/js/utils.js"></script>
+
+</div>
+</body>
+
+</html>

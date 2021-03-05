@@ -1,4 +1,60 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://gk524-best.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gk524-best.github.io/" rel="alternate" type="text/html" /><updated>2021-03-03T23:00:04+08:00</updated><id>https://gk524-best.github.io/feed.xml</id><title type="html">GK Blog</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">记一道java面试题</title><link href="https://gk524-best.github.io/java/2021/03/03/java01.html" rel="alternate" type="text/html" title="记一道java面试题" /><published>2021-03-03T21:44:22+08:00</published><updated>2021-03-03T21:44:22+08:00</updated><id>https://gk524-best.github.io/java/2021/03/03/java01</id><content type="html" xml:base="https://gk524-best.github.io/java/2021/03/03/java01.html">&lt;p&gt;  正题开始之前，先瞎扯一点，这个博客网站采用Jekyll静态网站生成器搭建的，主题参考一位国外大牛的，就是很简洁，
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://gk524-best.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gk524-best.github.io/" rel="alternate" type="text/html" /><updated>2021-03-05T23:41:55+08:00</updated><id>https://gk524-best.github.io/feed.xml</id><title type="html">GK Blog</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Java包冲突时候解决思路</title><link href="https://gk524-best.github.io/java/2021/03/05/java02.html" rel="alternate" type="text/html" title="Java包冲突时候解决思路" /><published>2021-03-05T22:49:33+08:00</published><updated>2021-03-05T22:49:33+08:00</updated><id>https://gk524-best.github.io/java/2021/03/05/java02</id><content type="html" xml:base="https://gk524-best.github.io/java/2021/03/05/java02.html">&lt;p&gt;  今天使用mybatis-plus进行关联表查询，因为不是特别复杂的请求我把Mysql就写在对应的mapper文件中了，使用了@Select注解。
+然而意外的报错了，报错信息如下：&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;An attempt was made to call a method that does not exist. The attempt was made from the following location:
+
+    com.baomidou.mybatisplus.core.MybatisMapperAnnotationBuilder$AnnotationWrapper.&amp;lt;init&amp;gt;(MybatisMapperAnnotationBuilder.java:686)
+
+The following method did not exist:
+
+    org.apache.ibatis.annotations.Select.databaseId()Ljava/lang/String;
+
+The method's class, org.apache.ibatis.annotations.Select, is available from the following locations:
+
+    jar:file:/Applications/IntelliJ%20IDEA.app/Contents/plugins/maven/lib/maven3/repository/org/mybatis/mybatis/3.5.3/mybatis-3.5.3.jar!/org/apache/ibatis/annotations/Select.class
+
+The class hierarchy was loaded from the following locations:
+
+    org.apache.ibatis.annotations.Select: file:/Applications/IntelliJ%20IDEA.app/Contents/plugins/maven/lib/maven3/repository/org/mybatis/mybatis/3.5.3/mybatis-3.5.3.jar
+
+
+Action:
+
+Correct the classpath of your application so that it contains a single, compatible version of org.apache.ibatis.annotations.Select
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;  这是包版本不对应造成的，对于一个新手来说无所适从呀。请教过同事之后，指定是引用的版本冲突了，本地多了mybatis的版本，不是mybatis-plus依赖的版本。
+他网上找的答案是把mybatis-plus-boot-starter替换成mybatis-plus这样一试果真是可以运行了，我在兴喜之际，然后再进行别的添加、删除接口开发的时候，也意外的报错
+了：&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Whitelabel Error Page
+This application has no explicit mapping for /error, so you are seeing this as a fallback.
+ 
+Thu May 23 14:54:08 CST 2019
+There was an unexpected error (type=Internal Server Error, status=500).
+Invalid bound statement (not found): com.mrk.dx.system.dao.SkyUserDao.selectList
+org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.mrk.dx.system.dao.SkyUserDao.selectList
+	at org.apache.ibatis.binding.MapperMethod$SqlCommand.&amp;lt;init&amp;gt;(MapperMethod.java:232)
+	at org.apache.ibatis.binding.MapperMethod.&amp;lt;init&amp;gt;(MapperMethod.java:50)
+	at org.apache.ibatis.binding.MapperProxy.lambda$cachedMapperMethod$0(MapperProxy.java:62)
+	at java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1660)
+	at org.apache.ibatis.binding.MapperProxy.cachedMapperMethod(MapperProxy.java:62)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:57)
+	at com.sun.proxy.$Proxy101.selectList(Unknown Source)
+	at com.baomidou.mybatisplus.service.impl.ServiceImpl.selectList(ServiceImpl.java:292)
+	at com.baomidou.mybatisplus.service.impl.ServiceImpl$$FastClassBySpringCGLIB$$3e2398a4.invoke(&amp;lt;generated&amp;gt;)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:684)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;然后查了mybatis-plus与mybatis-plus-boot-starter区别，mybatis-plus-boot-starter将xml中BaseMapper中定义的id全部已经实现了,而mybatis-plus这个包
+还需要自己实现BaseMapper中的定义。这样不是又要回到写xml的时代了吗，强迫症的我无法忍受。最后花了好大的功夫找到pagehelper包所依赖的mybatis版本造成的。&lt;/p&gt;
+
+&lt;p&gt;虽然花费了好长时间解决了这个问题，但是学会了好多东西，总结一下遇到包冲突解决思路：&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;先明确起冲突的是哪个包&lt;/li&gt;
+  &lt;li&gt;查找主要包所依赖对应包的版本号, (ctrl + 鼠标左键)进到源码中查找所依赖对应包的版本&lt;/li&gt;
+  &lt;li&gt;在启动的项目中排查可能依赖对应包的包，然后进行查找，查找方法如上所示&lt;/li&gt;
+  &lt;li&gt;然后找到对应包冲突然后进行升级&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;以上就是包冲突发生后，如何去解决包冲突的思路总结。以后应该得心应手了！&lt;/p&gt;</content><author><name></name></author><category term="java" /><summary type="html">  今天使用mybatis-plus进行关联表查询，因为不是特别复杂的请求我把Mysql就写在对应的mapper文件中了，使用了@Select注解。 然而意外的报错了，报错信息如下： ``` An attempt was made to call a method that does not exist. The attempt was made from the following location:</summary></entry><entry><title type="html">记一道java面试题</title><link href="https://gk524-best.github.io/java/2021/03/03/java01.html" rel="alternate" type="text/html" title="记一道java面试题" /><published>2021-03-03T21:44:22+08:00</published><updated>2021-03-03T21:44:22+08:00</updated><id>https://gk524-best.github.io/java/2021/03/03/java01</id><content type="html" xml:base="https://gk524-best.github.io/java/2021/03/03/java01.html">&lt;p&gt;  正题开始之前，先瞎扯一点，这个博客网站采用Jekyll静态网站生成器搭建的，主题参考一位国外大牛的，就是很简洁，
 目前功能呢不全，后期抽空会完善一下功能，写博客主要就是为了记录自己在学习工作中遇到的坑。&lt;br /&gt;
   最近除了上班时间，一直帮朋友搞一个简单的生鲜行业的小程序，前后端都是我。前端中台采用React, 环境都是自己搭&lt;/p&gt;
 
